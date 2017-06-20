@@ -20,16 +20,43 @@ var ListManager = React.createClass({
   },
 
   render: function(){
+
+    var customSeshStyle = {
+      marginTop: 10
+    }
+
+    var headingStyle = {
+
+    }
+
+    if (this.props.headingColor){
+      headingStyle.background = this.props.headingColor;
+    }
+
     return (
-      <div>
-        <h3>
-          {this.props.title}
-        </h3>
-        <form onSubmit={this.handleClick}>
-          <input onChange={this.onChange} value={this.state.newMessageText}></input>
-          <button>Add</button>
-        </form>
-        <List items={this.state.items}></List>
+      <div style={customSeshStyle} className="col-sm-4">
+        <div className="panel panel-primary">
+          <div style={headingStyle} className="panel-heading">
+            <h3>
+              {this.props.title}
+            </h3>
+          </div>
+          <div className="panel-body">
+            <form onSubmit={this.handleClick}>
+              <div className="col-sm-8">
+                <input className="form-control" onChange={this.onChange} value={this.state.newMessageText}></input>
+              </div>
+              <div className="col-sm-4">
+                <button className="btn btn-primary">
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="panel-body">
+            <List items={this.state.items}></List>
+          </div>
+        </div>
       </div>
     );
   }

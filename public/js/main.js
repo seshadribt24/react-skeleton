@@ -21249,25 +21249,60 @@ var ListManager = React.createClass({
   },
 
   render: function () {
+
+    var customSeshStyle = {
+      marginTop: 10
+    };
+
+    var headingStyle = {};
+
+    if (this.props.headingColor) {
+      headingStyle.background = this.props.headingColor;
+    }
+
     return React.createElement(
       'div',
-      null,
+      { style: customSeshStyle, className: 'col-sm-4' },
       React.createElement(
-        'h3',
-        null,
-        this.props.title
-      ),
-      React.createElement(
-        'form',
-        { onSubmit: this.handleClick },
-        React.createElement('input', { onChange: this.onChange, value: this.state.newMessageText }),
+        'div',
+        { className: 'panel panel-primary' },
         React.createElement(
-          'button',
-          null,
-          'Add'
+          'div',
+          { style: headingStyle, className: 'panel-heading' },
+          React.createElement(
+            'h3',
+            null,
+            this.props.title
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'panel-body' },
+          React.createElement(
+            'form',
+            { onSubmit: this.handleClick },
+            React.createElement(
+              'div',
+              { className: 'col-sm-8' },
+              React.createElement('input', { className: 'form-control', onChange: this.onChange, value: this.state.newMessageText })
+            ),
+            React.createElement(
+              'div',
+              { className: 'col-sm-4' },
+              React.createElement(
+                'button',
+                { className: 'btn btn-primary' },
+                'Add'
+              )
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'panel-body' },
+          React.createElement(List, { items: this.state.items })
         )
-      ),
-      React.createElement(List, { items: this.state.items })
+      )
     );
   }
 });
@@ -21279,6 +21314,8 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var ListManager = require('./components/ListManager.jsx');
 
-ReactDom.render(React.createElement(ListManager, { title: 'Ingedients List' }), document.getElementById('show_ingredients'));
+ReactDom.render(React.createElement(ListManager, { title: 'Ingredients List' }), document.getElementById('ingredients'));
+ReactDom.render(React.createElement(ListManager, { title: 'Shopping List' }), document.getElementById('shopping'));
+ReactDom.render(React.createElement(ListManager, { title: 'Christmas List', headingColor: 'red' }), document.getElementById('christmas'));
 
 },{"./components/ListManager.jsx":195,"react":191,"react-dom":1}]},{},[196]);
